@@ -5,8 +5,11 @@ import Place from '@/views/Place.vue'
 import Guest from '@/views/Guest.vue'
 import Invite from '@/views/Invite.vue'
 import E404 from '@/views/E404.vue'
+import CostumeOrRequisite from '@/views/CostumeOrRequisite.vue'
+import Attribute from '@/views/Attribute.vue'
 
-const authGuard = function (to, from, next) {
+//TODO перебрать логику
+const authGuard = (to, from, next) => {
   if (!localStorage.getItem('token') && !to.params.idInvite) {
     next({name: 'guest'})
   } else if (!localStorage.getItem('token')) {
@@ -55,6 +58,31 @@ const routes = [
     component: Place,
     beforeEnter: authGuard
   },
+  {
+    path: '/costumes/:id',
+    name: 'attribute-costumes',
+    component: Attribute,
+    beforeEnter: authGuard
+  },
+  {
+    path: '/requisites/:id',
+    name: 'attribute-requisites',
+    component: Attribute,
+    beforeEnter: authGuard
+  },
+  {
+    path: '/place/:id/costumes',
+    name: 'costumes',
+    component: CostumeOrRequisite,
+    beforeEnter: authGuard
+  },
+  {
+    path: '/place/:id/requisites',
+    name: 'requisites',
+    component: CostumeOrRequisite,
+    beforeEnter: authGuard
+  },
+
   {
     path: '/invite/:idInvite',
     name: 'invite',

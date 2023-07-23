@@ -1,11 +1,11 @@
-import {defaultApiInstance} from '@/api/index'
+import defaultApiInstance from '@/api/index'
 
 const placesApi = {
   getEmployees() {
     const url = '/employees'
     return defaultApiInstance.get(url)
   },
-  getEmployee(id) {
+  getEmployee(id: string) {
     const url = `/employees/${id}`
     return defaultApiInstance.get(url)
   }
